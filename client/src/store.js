@@ -76,10 +76,10 @@ export default new Vuex.Store({
         // res.send(res.data)
       } catch (err) { console.error(err) }
     },
-    async getQueryDrinks({ dispatch, commit }) {
-      try {
-        // let res = 
-      }
-    }
+    // async getQueryDrinks({ dispatch, commit }) {
+    //   try {
+    //     // let res = 
+    //   }
+    // }
   }
 })
