@@ -25,6 +25,7 @@ export default new Vuex.Store({
   state: {
     user: {},
     queryDrinks: {}
+
     // savedDrinks: {}
   },
   mutations: {
@@ -71,15 +72,15 @@ export default new Vuex.Store({
     async search({ dispatch, commit }, query) {
       try {
         let res = await api.get(searchurl + query)
-        console.log(res.data)
-        commit("setQueryDrinks", res.data)
+        console.log(res.data.drinks)
+        commit("setQueryDrinks", res.data.drinks)
         // res.send(res.data)
       } catch (err) { console.error(err) }
     },
-    async getQueryDrinks({ dispatch, commit }) {
-      try {
-        // let res = 
-      }
-    }
+    // async getQueryDrinks({ dispatch, commit }) {
+    //   try {
+    //     let res = 
+    //   }
+    // }
   }
 })
