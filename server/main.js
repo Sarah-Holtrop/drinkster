@@ -33,9 +33,10 @@ server.use('/account', new AuthController().router)
 
 // Register other routes here
 import CreatedDrinksController from './controllers/CreatedDrinksController.js'
+import FavoriteDrinksController from './controllers/FavoriteDrinksController.js'
 
 server.use('/api/createddrinks', new CreatedDrinksController().router)
-
+server.use('/api/favoriteddrinks', new FavoriteDrinksController().router)
 
 
 // Default error handler

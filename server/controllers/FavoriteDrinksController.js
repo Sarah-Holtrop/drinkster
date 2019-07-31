@@ -7,6 +7,9 @@ export default class FavoriteDrinksController {
     this.router = express.Router()
       .use(Authorize.authenticated)
       .get('', this.getAllFavoriteDrinksByUserId)
+      .delete('/:id', this.deleteOneFavoriteDrink)
+      // need userId to post newFavoriteDrink
+      .post('', this.saveNewFavoriteDrink)
   }
   async getAllFavoriteDrinksByUserId(req, res, next) {
     try {
@@ -14,9 +17,16 @@ export default class FavoriteDrinksController {
       return res.send(data)
     } catch (error) { next(error) }
   }
-  async saveFavoriteDrink(req, res, next) {
+  // NOTE Waiting for model from front end on SaveToFavorites or whatever
+  async saveNewFavoriteDrink(req, res, next) {
     try {
       let data = await _favoriteDrinksService.post()
+    } catch (error) { next(error) }
+  }
+  async deleteOneFavoriteDrink(req, res, next) {
+    try {
+      await _favoriteDrinksService.findOneAndRemove({ drinkId: req.params.idDrink, userId: req.session.uid })
+      return res.send("Successfully deleted!")
     } catch (error) { next(error) }
   }
 }
