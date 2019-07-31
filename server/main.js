@@ -31,3 +31,18 @@ server.use(new Session().express)
 server.use('/account', new AuthController().router)
 
 // Register other routes here
+
+
+
+server.use((error, req, res, next) => {
+  res.status(error.status || 400).send({ error: { message: error.message } })
+})
+server.use('*', (req, res, next) => {
+  res.status(404).send({
+    error: 'No matching routes'
+  })
+})
+
+server.listen(port, () => {
+  console.log('Server is running on port: ', port)
+})

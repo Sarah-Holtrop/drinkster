@@ -5,6 +5,13 @@ import router from './router'
 import AuthService from './AuthService'
 
 Vue.use(Vuex)
+//https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
+
+let api = axios.create({
+  baseURL: 'https://www.thecocktaildb.com/api/json/v1/1'
+})
+
+let searchurl = 'search.php?s='
 
 let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/' : '/'
 
@@ -16,44 +23,23 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    user: {}
-
+    queryDrinks: {}
+    // savedDrinks: {}
   },
   mutations: {
-    setUser(state, user) {
-      state.user = user
+    setQueryDrinks(state, data) {
+      state.queryDrinks = data
+
     }
 
   },
   actions: {
-    async register({ commit, dispatch }, creds) {
+    async search({ dispatch, commit }, query) {
       try {
-        let user = await AuthService.Register(creds)
-        commit('setUser', user)
-        router.push({ name: "recipes" })
-      } catch (error) {
-        console.warn(error.message)
-      }
-    },
-    async login({ commit, dispatch }, creds) {
-      try {
-        let user = await AuthService.Login(creds)
-        commit('setUser', user)
-        router.push({ name: "recipes" })
-      } catch (error) {
-        console.warn(error.message)
-      }
-    },
-    async logout({ commit, dispatch }) {
-      try {
-        let success = await AuthService.Logout()
-        if (!success) { }
-        commit('resetState')
-        router.push({ name: "login" })
-      } catch (error) {
-        console.warn(error.message)
-      }
+        let res = await api.get(searchurl + query)
+        console.log(res.data)
+        commit("setQueryDrinks", res.data)
+      } catch (err) { console.error(err) }
     }
-
   }
 })
