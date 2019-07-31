@@ -45,11 +45,11 @@
     methods: {
       register() {
         this.$store.dispatch("register", this.newUser);
+      },
+      loginUser() {
+        this.$store.dispatch("login", this.creds);
       }
     },
-    loginUser() {
-      this.$store.dispatch("login", this.creds);
-    }
   }
 </script>
 

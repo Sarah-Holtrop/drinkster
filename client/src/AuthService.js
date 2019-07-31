@@ -2,9 +2,9 @@ import Axios from 'axios'
 let baseUrl = location.host.includes('localhost') ? '//localhost:3000/' : '/'
 
 let auth = Axios.create({
-  baseUrl: baseUrl + "account/",
+  baseURL: baseUrl + "account/",
   timeout: 3000,
-  withCredentails: true
+  withCredentials: true
 })
 
 export default class AuthService {
