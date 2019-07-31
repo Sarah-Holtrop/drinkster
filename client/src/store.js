@@ -73,7 +73,13 @@ export default new Vuex.Store({
         let res = await api.get(searchurl + query)
         console.log(res.data)
         commit("setQueryDrinks", res.data)
+        // res.send(res.data)
       } catch (err) { console.error(err) }
+    },
+    async getQueryDrinks({ dispatch, commit }) {
+      try {
+        // let res = 
+      }
     }
   }
 })
