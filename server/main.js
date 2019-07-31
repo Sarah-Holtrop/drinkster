@@ -25,15 +25,20 @@ server.use(bp.urlencoded({
   extended: true
 }))
 
+// Register your session
 import AuthController from './controllers/AuthController'
 import Session from "./middleware/session"
 server.use(new Session().express)
 server.use('/account', new AuthController().router)
 
 // Register other routes here
+import CreatedDrinksController from './controllers/CreatedDrinksController.js'
+
+server.use('/api/createddrinks', new CreatedDrinksController().router)
 
 
 
+// Default error handler
 server.use((error, req, res, next) => {
   res.status(error.status || 400).send({ error: { message: error.message } })
 })
