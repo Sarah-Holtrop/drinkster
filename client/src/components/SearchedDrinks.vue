@@ -1,5 +1,5 @@
 <template>
-  <div class="searchResults">
+  <div class="activeDrink">
 
 
   </div>
@@ -8,11 +8,15 @@
 
 <script>
   export default {
-    name: 'searchResults',
+    name: 'activeDrink',
     data() {
       return {}
     },
-    computed: {},
+    computed: {
+      activeDrink() {
+        return this.$store.state.queryDrinks
+      }
+    },
     methods: {},
     components: {}
   }
@@ -22,4 +26,3 @@
 <style scoped>
 
 </style>
-<!-- commit  -->

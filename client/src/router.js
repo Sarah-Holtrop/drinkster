@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import Login from './views/Login.vue'
 //@ts-ignore
 // import Recipes from './views/Recipes.vue'
-// import User from './views/User.vue'
+import User from './views/User.vue'
 import Home from './views/Home.vue'
 
 Vue.use(Router)
