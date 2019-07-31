@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import Login from './views/Login.vue'
 //@ts-ignore
 // import Recipes from './views/Recipes.vue'
-import User from './views/User.vue'
+import UserProfile from './views/UserProfile.vue'
 import Home from './views/Home.vue'
 
 Vue.use(Router)
@@ -26,9 +26,9 @@ export default new Router({
       redirect: '/'
     },
     {
-      path: '/user',
-      name: 'user',
-      component: User
+      path: '/UserProfile',
+      name: 'UserProfile',
+      component: UserProfile
     }
   ]
 })
