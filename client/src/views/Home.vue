@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <Search class="mb-2"></Search>
+    <button class="butt" @click="UserProfile">Profile</button>
+    <Search class="m-2"></Search>
     <SearchedDrinks></SearchedDrinks>
     <div v-for="s in search" :key="s.idDrink">
       <img :src="s.strDrinkThumb">
@@ -16,6 +17,7 @@
   import Search from '../components/SearchComponent.vue'
   // import SearchResults from '../components/SearchResultsComponent.vue'
   import SearchedDrinks from '../components/SearchedDrinks.vue'
+  import router from '../router'
   export default {
     name: 'home',
     data() {
@@ -26,7 +28,11 @@
         return this.$store.state.queryDrinks
       },
     },
-    methods: {},
+    methods: {
+      UserProfile() {
+        router.push({ name: 'UserProfile' })
+      }
+    },
     components: {
       Search,
       SearchedDrinks
