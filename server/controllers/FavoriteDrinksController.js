@@ -20,8 +20,8 @@ export default class FavoriteDrinksController {
   // NOTE Waiting for model from front end on SaveToFavorites or whatever
   async saveNewFavoriteDrink(req, res, next) {
     try {
-      let data = await _favoriteDrinksService.post()
-      // Need to put something in post request
+      let data = await _favoriteDrinksService.create(req.body)
+      res.send(data)
     } catch (error) { next(error) }
   }
   async deleteOneFavoriteDrink(req, res, next) {

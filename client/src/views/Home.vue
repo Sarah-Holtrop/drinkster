@@ -2,6 +2,7 @@
   <div class="home">
 
     <button class="btn" @click="UserProfile">Profile</button>
+    <button class="btn btn-danger" @click="logout">Logout</button>
     <Search class="m-2"></Search>
     <SearchedDrinks></SearchedDrinks>
     <div v-for="s in search" :key="s.idDrink">
@@ -39,8 +40,17 @@
         this.$router.push({ name: "ActiveDrink", params: { drinkId: s.idDrink } })
 
       },
-      addFavorite(payload) {
-        this.$store.dispatch('addFavorite', payload)
+      addFavorite(drink) {
+        let newDrink = {
+          name: drink.strDrink,
+          drinkId: drink.idDrink,
+          img: drink.st
+
+        }
+        this.$store.dispatch('addFavorite', newDrink)
+      },
+      logout() {
+        this.$store.dispatch('logout')
       }
     },
     components: {

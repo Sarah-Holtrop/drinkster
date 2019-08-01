@@ -36,8 +36,8 @@ export default new Router({
       name: 'UserProfile',
       component: UserProfile,
       children: [{
-        path: 'favorites',
-        name: 'favorites',
+        path: 'favoriteddrinks',
+        name: 'favoriteddrinks',
         component: Favorites
       },
       {

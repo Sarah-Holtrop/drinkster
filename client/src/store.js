@@ -10,8 +10,12 @@ Vue.use(Vuex)
 let api = Axios.create({
   baseURL: 'https://www.thecocktaildb.com/api/json/v1/1'
 })
-
 let searchurl = 'search.php?s='
+
+let ourApi = Axios.create({
+  baseURL: 'http://localhost:3000/api',
+  withCredentials: true
+})
 
 let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/' : '/'
 
@@ -26,7 +30,7 @@ export default new Vuex.Store({
     user: {},
     queryDrinks: {},
     activeDrink: {},
-    favoriteDrinks: {},
+    favoriteDrinks: [],
     createdDrinks: {}
 
 
@@ -44,6 +48,9 @@ export default new Vuex.Store({
     },
     setFavoriteDrinks(state, data) {
       state.favoriteDrinks = data
+    },
+    resetState(state) {
+      state.user = {}
     }
 
   },
@@ -63,7 +70,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Login(creds)
         commit('setUser', user)
-        router.push({ name: "Home" })
+        router.push({ name: "home" })
       } catch (e) {
         console.warn(e.message)
       }
@@ -103,7 +110,8 @@ export default new Vuex.Store({
     },
     async addFavorite({ dispatch, commit }, payload) {
       try {
-        let res = await api.post(payload)
+        let res = await ourApi.post('favoritedDrinks', payload)
+        console.log(res.data)
         commit('setFavoriteDrinks', payload)
       } catch (error) {
         console.error(error)

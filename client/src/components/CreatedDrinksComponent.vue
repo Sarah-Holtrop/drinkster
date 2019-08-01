@@ -10,7 +10,8 @@
   export default {
     name: 'Created',
     data() {
-      return {}
+      return {
+      }
     },
     computed: {},
     methods: {},

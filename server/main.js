@@ -9,7 +9,7 @@ DbContext.connect()
 var port = process.env.PORT || 3000
 server.use(express.static(__dirname + '/../client/dist'))
 
-var whitelist = ['http://localhost:8080'];
+var whitelist = ['http://localhost:8080', 'http://localhost:3000/api'];
 var corsOptions = {
   origin: function (origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -31,12 +31,13 @@ import Session from "./middleware/session"
 server.use(new Session().express)
 server.use('/account', new AuthController().router)
 
+
 // Register other routes here
 import CreatedDrinksController from './controllers/CreatedDrinksController.js'
 import FavoriteDrinksController from './controllers/FavoriteDrinksController.js'
 
-server.use('/api/createddrinks', new CreatedDrinksController().router)
-server.use('/api/favoriteddrinks', new FavoriteDrinksController().router)
+server.use('/api/createdDrinks', new CreatedDrinksController().router)
+server.use('/api/favoritedDrinks', new FavoriteDrinksController().router)
 
 
 // Default error handler
