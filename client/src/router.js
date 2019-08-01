@@ -5,8 +5,10 @@ import Login from './views/Login.vue'
 //@ts-ignore
 // import Recipes from './views/Recipes.vue'
 import UserProfile from './views/UserProfile.vue'
+// @ts-ignore
 import Home from './views/Home.vue'
-
+// @ts-ignore
+import ActiveDrink from './views/ActiveDrink.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -29,6 +31,14 @@ export default new Router({
       path: '/UserProfile',
       name: 'UserProfile',
       component: UserProfile
+    },
+    {
+      path: '/:drinkId',
+      name: 'ActiveDrink',
+      component: ActiveDrink
+      //   function () {
+      //   return import('./views/ActiveDrink.vue')
+      // }
     }
   ]
 })

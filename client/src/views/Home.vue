@@ -1,11 +1,12 @@
 <template>
   <div class="home">
+
     <button class="butt" @click="UserProfile">Profile</button>
     <Search class="m-2"></Search>
     <SearchedDrinks></SearchedDrinks>
     <div v-for="s in search" :key="s.idDrink">
+      <h3 @click="viewDrink(s)">{{s.strDrink}}</h3>
       <img :src="s.strDrinkThumb">
-      <h3 @click>{{s.strDrink}}</h3>
 
 
     </div>
@@ -31,7 +32,11 @@
     methods: {
       UserProfile() {
         router.push({ name: 'UserProfile' })
-      }
+      },
+      viewDrink(s) {
+        this.$router.push({ name: "ActiveDrink", params: { drinkId: s.idDrink } })
+
+      },
     },
     components: {
       Search,

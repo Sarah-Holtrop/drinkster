@@ -1,9 +1,9 @@
 <template>
   <div class="UserProfile">
-    <!-- user Name
-User favorites list
- -->
-    <p>cheese</p>
+    <router-link to='/'>Home</router-link>
+
+    <h1>Good morning UserProfile</h1>
+    <p>Welcome to Drinkster {{user.name}}!!</p>
 
   </div>
 </template>
@@ -17,7 +17,12 @@ User favorites list
     data() {
       return {}
     },
-    computed: {},
+    computed: {
+      user() {
+        return this.$store.state.user
+      }
+
+    },
     methods: {
 
     },

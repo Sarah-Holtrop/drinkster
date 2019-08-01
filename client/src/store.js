@@ -24,7 +24,9 @@ let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/'
 export default new Vuex.Store({
   state: {
     user: {},
-    queryDrinks: {}
+    queryDrinks: {},
+    activeDrink: {}
+
 
     // savedDrinks: {}
   },
@@ -34,6 +36,9 @@ export default new Vuex.Store({
     },
     setUser(state, data) {
       state.user = data
+    },
+    setActiveDrink(state, data) {
+      state.activeDrink = data
     }
 
   },
@@ -82,5 +87,14 @@ export default new Vuex.Store({
     //     let res = 
     //   }
     // }
+    async getDrinkById({ dispatch, commit }, payload) {
+      try {
+        let res = await api.get('/lookup.php?i=' + payload.drinkId)
+        commit('setActiveDrink', res.data.drinks)
+        console.log(res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
 })

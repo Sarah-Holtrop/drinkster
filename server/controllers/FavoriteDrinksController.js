@@ -21,6 +21,7 @@ export default class FavoriteDrinksController {
   async saveNewFavoriteDrink(req, res, next) {
     try {
       let data = await _favoriteDrinksService.post()
+      // Need to put something in post request
     } catch (error) { next(error) }
   }
   async deleteOneFavoriteDrink(req, res, next) {
