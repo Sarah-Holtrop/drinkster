@@ -1,12 +1,13 @@
 <template>
   <div class="home">
 
-    <button class="butt" @click="UserProfile">Profile</button>
+    <button class="btn" @click="UserProfile">Profile</button>
     <Search class="m-2"></Search>
     <SearchedDrinks></SearchedDrinks>
     <div v-for="s in search" :key="s.idDrink">
       <h3 @click="viewDrink(s)">{{s.strDrink}}</h3>
       <img :src="s.strDrinkThumb">
+      <button class="btn btn-success" @click='addFavorite(s)'>Save to Favorites</button>
 
 
     </div>
@@ -19,6 +20,7 @@
   // import SearchResults from '../components/SearchResultsComponent.vue'
   import SearchedDrinks from '../components/SearchedDrinks.vue'
   import router from '../router'
+
   export default {
     name: 'home',
     data() {
@@ -37,6 +39,9 @@
         this.$router.push({ name: "ActiveDrink", params: { drinkId: s.idDrink } })
 
       },
+      addFavorite(payload) {
+        this.$store.dispatch('addFavorite', payload)
+      }
     },
     components: {
       Search,

@@ -25,7 +25,9 @@ export default new Vuex.Store({
   state: {
     user: {},
     queryDrinks: {},
-    activeDrink: {}
+    activeDrink: {},
+    favoriteDrinks: {},
+    createdDrinks: {}
 
 
     // savedDrinks: {}
@@ -39,6 +41,9 @@ export default new Vuex.Store({
     },
     setActiveDrink(state, data) {
       state.activeDrink = data
+    },
+    setFavoriteDrinks(state, data) {
+      state.favoriteDrinks = data
     }
 
   },
@@ -94,6 +99,15 @@ export default new Vuex.Store({
         console.log(res.data)
       } catch (error) {
         console.error(error)
+      }
+    },
+    async addFavorite({ dispatch, commit }, payload) {
+      try {
+        let res = await api.post(payload)
+        commit('setFavoriteDrinks', payload)
+      } catch (error) {
+        console.error(error)
+
       }
     }
   }

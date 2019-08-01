@@ -4,7 +4,7 @@
       <router-link to='/'>Home</router-link>
       <p>{{drink.strDrink}}</p>
       <img :src="drink.strDrinkThumb" alt="cocktail img">
-      <div class="row pt-3 mt-3 border border-dark rounded">
+      <div class="row pt-3 mt-3 border border-dark rounded mx-2">
         <div class="col-6 justify-content-end d-flex">
           <ul>
             <p><b>{{drink.strIngredient1}}</b> {{drink.strMeasure1}}</p>

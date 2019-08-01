@@ -9,6 +9,10 @@ import UserProfile from './views/UserProfile.vue'
 import Home from './views/Home.vue'
 // @ts-ignore
 import ActiveDrink from './views/ActiveDrink.vue'
+// @ts-ignore
+import Favorites from './components/FavoriteDrinksComponent.vue'
+// @ts-ignore
+import Created from './components/CreatedDrinksComponent.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -30,7 +34,17 @@ export default new Router({
     {
       path: '/UserProfile',
       name: 'UserProfile',
-      component: UserProfile
+      component: UserProfile,
+      children: [{
+        path: 'favorites',
+        name: 'favorites',
+        component: Favorites
+      },
+      {
+        path: 'created',
+        name: 'created',
+        component: Created
+      }]
     },
     {
       path: '/:drinkId',
