@@ -134,7 +134,7 @@ export default new Vuex.Store({
     },
     async addCreatedDrink({ dispatch, commit }, payload) {
       try {
-        // debugger
+        debugger
         let res = await ourApi.post('createdDrinks/', payload)
         dispatch('getCreatedDrinksByUserId')
       } catch (error) {
@@ -142,11 +142,10 @@ export default new Vuex.Store({
       }
     },
 
-    async getCreatedDrinksByUserId({ dispatch, commit }, payload) {
+    async getCreatedDrinksByUserId({ dispatch, commit }) {
       try {
-        // console.log(payload)
-        // debugger
-        let res = await ourApi.get('createdDrinks/' + payload)
+        // NOTE you don't need to send the userId if you are only going to get the createdDrinks by the user whose currenlty logged in because the server knows who is logged in on that session
+        let res = await ourApi.get('createdDrinks/')
         commit('setCreatedDrinks', res.data)
 
       } catch (error) {
