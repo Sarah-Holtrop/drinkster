@@ -5,9 +5,9 @@ let ObjectId = Schema.Types.ObjectId
 
 let _schema = new Schema({
   userId: { type: ObjectId, ref: 'User', required: true },
-  drinkId: { type: String },
-  name: { type: String },
-  image: { type: String }
+  drinkId: { type: String, required: true },
+  name: { type: String, required: true },
+  image: { type: String, required: true }
 })
 export default mongoose.model('FavoritedDrinks', _schema)
 

@@ -16,7 +16,7 @@
 <script>
   import router from '../router'
   import Favorites from '../components/FavoriteDrinksComponent.vue'
-  import Created from '../components/CreatedDrinksComponent.vue'
+  import Created from '../components/CreateADrinkComponent.vue'
 
   export default {
     name: 'UserProfile',
@@ -26,7 +26,8 @@
     computed: {
       user() {
         return this.$store.state.user
-      }
+      },
+
 
     },
     methods: {

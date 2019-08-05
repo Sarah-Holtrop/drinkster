@@ -31,7 +31,8 @@ export default new Vuex.Store({
     queryDrinks: {},
     activeDrink: {},
     favoriteDrinks: [],
-    createdDrinks: {}
+    createdDrinks: {},
+
 
 
     // savedDrinks: {}
@@ -46,8 +47,11 @@ export default new Vuex.Store({
     setActiveDrink(state, data) {
       state.activeDrink = data
     },
-    setFavoriteDrinks(state, data) {
+    setFavoritedDrinks(state, data) {
       state.favoriteDrinks = data
+    },
+    setCreatedDrinks(state, data) {
+      state.createdDrinks = data
     },
     resetState(state) {
       state.user = {}
@@ -110,12 +114,43 @@ export default new Vuex.Store({
     },
     async addFavorite({ dispatch, commit }, payload) {
       try {
-        let res = await ourApi.post('favoritedDrinks', payload)
-        console.log(res.data)
-        commit('setFavoriteDrinks', payload)
+        let res = await ourApi.post('favoritedDrinks/', payload)
+        console.log("res", res)
+        console.log("payload", payload)
+        dispatch('getFavoriteDrinksByUserId')
       } catch (error) {
         console.error(error)
 
+      }
+    },
+    async getFavoriteDrinksByUserId({ dispatch, commit }) {
+      try {
+        let res = await ourApi.get('favoritedDrinks/')
+        commit('setFavoritedDrinks', res.data)
+      } catch (error) {
+        console.error(error)
+
+      }
+    },
+    async addCreatedDrink({ dispatch, commit }, payload) {
+      try {
+        // debugger
+        let res = await ourApi.post('createdDrinks/', payload)
+        dispatch('getCreatedDrinksByUserId')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async getCreatedDrinksByUserId({ dispatch, commit }, payload) {
+      try {
+        // console.log(payload)
+        // debugger
+        let res = await ourApi.get('createdDrinks/' + payload)
+        commit('setCreatedDrinks', res.data)
+
+      } catch (error) {
+        console.error(error)
       }
     }
   }

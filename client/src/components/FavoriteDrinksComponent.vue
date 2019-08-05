@@ -9,7 +9,7 @@ onclick gets the drink
 <template>
   <div class="favorites">
     <p>cheese</p>
-    <h6>{{}}</h6>
+    <!-- <h6>{{}}</h6> -->
 
   </div>
 </template>

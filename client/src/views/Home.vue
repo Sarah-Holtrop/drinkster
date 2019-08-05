@@ -41,10 +41,12 @@
 
       },
       addFavorite(drink) {
+        // debugger
         let newDrink = {
           name: drink.strDrink,
           drinkId: drink.idDrink,
-          img: drink.st
+          image: drink.strDrinkThumb,
+          userId: this.$store.state.user._id
 
         }
         this.$store.dispatch('addFavorite', newDrink)

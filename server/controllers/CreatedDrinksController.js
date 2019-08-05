@@ -19,7 +19,7 @@ export default class CreatedDrinksController {
 
   async createDrink(req, res, next) {
     try {
-      req.body.drinkId = req.session.uid
+      req.body.userId = req.session.uid
       let data = await _createdDrinksService.create(req.body)
       return res.status(201).send(data)
     } catch (error) {
@@ -45,6 +45,7 @@ export default class CreatedDrinksController {
   }
   async getAllCreatedDrinksByUserId(req, res, next) {
     try {
+      // console.log(req.session.uid)
       let data = await _createdDrinksService.find({ userId: req.session.uid })
       return res.send(data)
     } catch (error) { next(error) }
