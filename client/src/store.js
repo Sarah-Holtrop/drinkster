@@ -134,7 +134,7 @@ export default new Vuex.Store({
     },
     async addCreatedDrink({ dispatch, commit }, payload) {
       try {
-        debugger
+        // debugger
         let res = await ourApi.post('createdDrinks/', payload)
         dispatch('getCreatedDrinksByUserId')
       } catch (error) {
@@ -148,6 +148,15 @@ export default new Vuex.Store({
         let res = await ourApi.get('createdDrinks/')
         commit('setCreatedDrinks', res.data)
 
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteDrinkById({ dispatch, commit }, payload) {
+      try {
+        // debugger
+        let data = await ourApi.delete('createdDrinks/' + payload)
+        dispatch('getCreatedDrinksByUserId')
       } catch (error) {
         console.error(error)
       }
