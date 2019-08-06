@@ -8,7 +8,7 @@
       <label for="description">Drink description:</label>
       <input type="text" name='description' placeholder="decription" v-model="newCreatedDrink.description"><br>
       <label for="ingredients">Drink ingredients (use ';' to seperate ingredients):</label>
-      <input type="text" name="ingredients" placeholder="" v-model="newCreatedDrink.ingredients"><br>
+      <input type="text" name="ingredients" placeholder="ingredients" v-model="newCreatedDrink.ingredients"><br>
       <label for="instructions">Instructions:</label>
       <textarea name="instructions" id="instructions" cols="50" rows="10"
         v-model="newCreatedDrink.instructions"></textarea>

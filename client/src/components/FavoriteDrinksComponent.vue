@@ -21,12 +21,18 @@ onclick gets the drink
     data() {
       return {}
     },
+    mounted() {
+      this.$store.dispatch('getFavoritesByUserId', this.newFavorite.userId)
+    },
     computed: {
       favorites() {
         return this.$store.state.favoriteDrinks
       }
     },
-    methods: {},
+    methods: {
+      addFavoriteDrink(newFavoriteDrink) {
+      }
+    },
     components: {}
   }
 </script>
