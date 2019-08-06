@@ -160,6 +160,15 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async deleteOneFavoriteDrink({ dispatch, commit }, payload) {
+      try {
+        // debugger
+        let data = await ourApi.delete('favoritedDrinks/' + payload)
+        dispatch('getFavoriteDrinksByUserId')
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 })

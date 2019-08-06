@@ -8,7 +8,7 @@ export default class FavoriteDrinksController {
       .use(Authorize.authenticated)
       .get('', this.getAllFavoriteDrinksByUserId)
       // .get('', this.getAllFavoriteDrinks)
-      .delete('/:drinkId/:userId', this.deleteOneFavoriteDrink)
+      .delete('/:id', this.deleteOneFavoriteDrink)
       // need userId to post newFavoriteDrink
       .post('', this.saveNewFavoriteDrink)
   }
@@ -39,7 +39,7 @@ export default class FavoriteDrinksController {
 
   async deleteOneFavoriteDrink(req, res, next) {
     try {
-      await _favoriteDrinksService.findOneAndRemove({ drinkId: req.params.idDrink, userId: req.session.uid })
+      await _favoriteDrinksService.findOneAndRemove({ _id: req.params.id, userId: req.session.uid })
       return res.send("Successfully deleted!")
     } catch (error) { next(error) }
   }

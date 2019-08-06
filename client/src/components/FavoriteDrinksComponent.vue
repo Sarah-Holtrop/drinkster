@@ -7,10 +7,12 @@ onclick gets the drink
 -->
 
 <template>
-  <div class="favorites">
-    <p>cheese</p>
-    <!-- <h6>{{}}</h6> -->
-
+  <div class="favorites row">
+    <div v-for="drink in favorites" class="col-4">
+      <p @click="viewDrink(drink)">{{drink.name}}</p>
+      <img :src="drink.image" alt="drink photo" style="height: 250px;width: 250px">
+      <button @click="deleteOneFavoriteDrink(drink._id)" class="btn btn-outline-danger">DELETE</button>
+    </div>
   </div>
 </template>
 
@@ -22,7 +24,7 @@ onclick gets the drink
       return {}
     },
     mounted() {
-      this.$store.dispatch('getFavoritesByUserId', this.newFavorite.userId)
+      this.$store.dispatch('getFavoriteDrinksByUserId')
     },
     computed: {
       favorites() {
@@ -31,7 +33,15 @@ onclick gets the drink
     },
     methods: {
       addFavoriteDrink(newFavoriteDrink) {
-      }
+      },
+      deleteOneFavoriteDrink(id) {
+        this.$store.dispatch("deleteOneFavoriteDrink", id)
+      },
+      viewDrink(drink) {
+        // debugger
+        this.$router.push({ name: "ActiveDrink", params: { drinkId: drink.drinkId } })
+
+      },
     },
     components: {}
   }
