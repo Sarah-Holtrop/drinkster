@@ -1,6 +1,6 @@
 <template>
   <div class="createdDrink">
-    <form @submit="addCreatedDrink">
+    <form @submit.prevent="addCreatedDrink">
       <label for="image">Pesonal Recipe:</label>
       <input type="text" name="image" placeholder="Image url" v-model="newCreatedDrink.img"><br>
       <label for="title">Drink Name:</label>
@@ -39,18 +39,17 @@
       return {
         newCreatedDrink: {
           title: "",
-          ingredients: [{}],
+          ingredients: "",
           instructions: "",
           description: "",
-          img: "",
-          userId: this.$store.state.user._id
+          img: ""
         },
         selected: ''
       }
     },
     mounted() {
       // debugger
-      this.$store.dispatch('getCreatedDrinksByUserId', this.newCreatedDrink.userId)
+      this.$store.dispatch('getCreatedDrinksByUserId', this.$store.state.user._id)
     },
     computed: {
       createdDrink() {
@@ -58,13 +57,24 @@
       }
     },
     methods: {
-      addCreatedDrink(newCreatedDrink) {
-        this.newCreatedDrink.ingredients = this.newCreatedDrink.ingredients.split(';').map(i => {
-          // let data = split(" ") use something like this to split on value vs name  
-          return { name: i };
-        })
-
-        this.$store.dispatch('addCreatedDrink', this.newCreatedDrink)
+      addCreatedDrink(e) {
+        let data = {
+          title: this.newCreatedDrink.title,
+          ingredients: this.newCreatedDrink.ingredients.split(';').map(i => {
+            return { name: i };
+          }),
+          instructions: this.newCreatedDrink.instructions,
+          description: this.newCreatedDrink.description,
+          img: this.newCreatedDrink.img
+        }
+        this.$store.dispatch('addCreatedDrink', data)
+        this.newCreatedDrink = {
+          title: "",
+          ingredients: "",
+          instructions: "",
+          description: "",
+          img: ""
+        }
       },
       deleteDrinkById(id) {
 
