@@ -1,9 +1,8 @@
 <template>
   <div class="search col-12">
     <form @submit.prevent="search">
-      <label for="search">Search Drinks: </label>
-      <input type="text" name="search" placeholder="search drink names" v-model="query">
-      <button type='submit'>search</button>
+      <input type="text" name="search" placeholder="Search Drink Names" v-model="query">
+      <button type='submit'>Search</button>
     </form>
     <!-- <SearchResults v-for="results in searchResults"></SearchResults> -->
 

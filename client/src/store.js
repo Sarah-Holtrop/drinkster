@@ -169,6 +169,15 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async editCreatedDrink({ dispatch, commit }, payload) {
+      try {
+
+        let data = await ourApi.put('createdDrinks/' + payload._id, payload)
+        dispatch('getCreatedDrinksByUserId')
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 })

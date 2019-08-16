@@ -1,15 +1,23 @@
 <template>
   <div class="home">
+    <div class="container-fluid">
 
-    <button class="btn" @click="UserProfile">Profile</button>
-    <button class="btn btn-danger" @click="logout">Logout</button>
-    <Search class="m-2"></Search>
-    <SearchedDrinks></SearchedDrinks>
-    <div v-for="s in search" :key="s.idDrink">
-      <h3 @click="viewDrink(s)">{{s.strDrink}}</h3>
-      <img :src="s.strDrinkThumb">
-      <button class="btn btn-success" @click='addFavorite(s)'>Save to Favorites</button>
+      <div class="row">
+        <button class="btn btn-primary offset-sm-5 col-sm-1" @click="UserProfile">Profile</button>
+        <button class="btn btn-danger col-sm-1" @click="logout">Logout</button>
+      </div>
 
+      <Search class="m-2 row justify-content-center"></Search>
+      <SearchedDrinks></SearchedDrinks>
+
+      <div class="row justify-content-center">
+        <div v-for="s in search" :key="s.idDrink" class="col-sm-3 m-1 p-1 border rounded border-dark">
+          <h5 @click="viewDrink(s)">{{s.strDrink}}</h5>
+          <img class="border border-dark rounded" :src="s.strDrinkThumb"><br>
+          <button class="btn btn-success mt-2" @click='addFavorite(s)'><i class="fas fa-heart"></i></button>
+        </div>
+
+      </div>
 
     </div>
   </div>
@@ -65,7 +73,7 @@
 
 <style scoped>
   img {
-    height: 350px;
-    width: 350px;
+    height: 150px;
+    width: 150px;
   }
 </style>
