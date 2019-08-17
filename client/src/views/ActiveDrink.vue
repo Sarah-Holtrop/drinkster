@@ -70,7 +70,12 @@
 
 <style scoped>
   img {
-    height: 400px;
-    width: 400px;
+    height: 150px;
+    width: 150px;
+
   }
+
+  /* * {
+    background-color: rgb(168, 103, 230);
+  } */
 </style>

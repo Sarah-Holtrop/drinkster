@@ -5,12 +5,12 @@ import router from './router'
 import AuthService from './AuthService'
 
 Vue.use(Vuex)
-//https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
 
 let api = Axios.create({
   baseURL: 'https://www.thecocktaildb.com/api/json/v1/1'
 })
 let searchurl = 'search.php?s='
+let randomUrl = 'random.php'
 
 let ourApi = Axios.create({
   baseURL: 'http://localhost:3000/api',
@@ -19,12 +19,6 @@ let ourApi = Axios.create({
 
 let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/' : '/'
 
-// let api = Axios.create({
-//   baseURL: base + "api/",
-//   timeout: 3000,
-//   withCredentials: true
-// })
-
 export default new Vuex.Store({
   state: {
     user: {},
@@ -32,6 +26,7 @@ export default new Vuex.Store({
     activeDrink: {},
     favoriteDrinks: [],
     createdDrinks: {},
+    randomDrink: {}
 
 
 
@@ -55,6 +50,9 @@ export default new Vuex.Store({
     },
     resetState(state) {
       state.user = {}
+    },
+    setRandomDrink(state, data) {
+      state.randomDrink = data
     }
 
   },
@@ -98,11 +96,14 @@ export default new Vuex.Store({
         // res.send(res.data)
       } catch (err) { console.error(err) }
     },
-    // async getQueryDrinks({ dispatch, commit }) {
-    //   try {
-    //     let res = 
-    //   }
-    // }
+
+    async getRandomDrink({ dispatch, commit }) {
+      try {
+        // debugger
+        let res = await api.get(randomUrl)
+        commit("setRandomDrink", res.data.drinks)
+      } catch (error) { console.error(error) }
+    },
     async getDrinkById({ dispatch, commit }, payload) {
       try {
         let res = await api.get('/lookup.php?i=' + payload.drinkId)
